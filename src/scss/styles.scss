@@ -1,0 +1,29 @@
+body {
+  background: #decee7;
+}
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .nav-link.active {
+    background: #ba9cc4;
+    border: 1px solid #5e2a8e;
+    border-bottom: 1px solid #ba9cc4;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: #ba9cc4;
+  border: 1px solid #5e2a8e;
+  border-radius: 5px;
+
+  .right-input {
+    margin-bottom: 20px;
+  }
+  .commission-select {
+    float: right;
+  }
+}
