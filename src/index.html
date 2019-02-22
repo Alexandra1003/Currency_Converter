@@ -6,7 +6,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href='css/styles.css'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.js'></script>
-  <script src='js/all.js'></script>
+  <script src='js/index.js'></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -16,9 +16,7 @@
 </head>
 
 <body ng-app="myApp">
-  <!-- <ul ng-controller="TestController as vm">
-    <li ng-repeat="one in vm.gf track by $index">{{one}}</li>
-  </ul> -->
+  </div>
   <main class="pt-5">
     <div class="content-wrapper col-md-6">
       <ul class="nav nav-tabs">
@@ -33,15 +31,10 @@
         <form class="form col-md-12">
           <div class="form-group col-md-6">
             <label for="exampleInputName2">Pay</label>
-
             <div class="input-group">
-             <!--  <select class="custom-select" id="inputGroupSelect04"> -->
-                <select class="custom-select" id="inputGroupSelect04" ng-options="item as item.label for item in items track by item.id" ng-model="selected"></select>
-                <!-- <option selected>Choose currency...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option> -->
-              <!-- </select> -->
+              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in currencyList | excludeFrom:fieldBuy"
+                ng-model="fieldSell">
+              </select>
             </div>
 
             <label for="exampleInputName2">Amount you wanna give</label>
@@ -52,11 +45,8 @@
             <label for="exampleInputName2">Get</label>
 
             <div class="input-group">
-              <select class="custom-select" id="inputGroupSelect04">
-                <option selected>Choose currency...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in currencyList  | excludeFrom:fieldSell"
+                ng-model="fieldBuy">
               </select>
             </div>
 
@@ -64,11 +54,8 @@
             <input type="text" class="form-control right-input" id="exampleInputName2" placeholder="0.00">
 
             <div class="input-group col-md-7 commission-select">
-              <select class="custom-select" id="inputGroupSelect04">
-                <option selected>Commission</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in commissionList"
+                ng-model="fieldCommission">
               </select>
             </div>
           </div>

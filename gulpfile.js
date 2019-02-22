@@ -17,12 +17,12 @@ gulp.task('sass', function () {
 });
 
 gulp.task('js', function (done) {
-  gulp.src('src/js/*.js')
+  gulp.src(['src/js/ng-app.js', 'src/js/service.js', 'src/js/controller.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(sourcemaps.init())
-    .pipe(concat('all.js'))
+    .pipe(concat('index.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/js'))
