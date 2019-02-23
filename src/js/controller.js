@@ -21,24 +21,34 @@
         $scope.currencyList = CurrencyList;
         $scope.commissionList = CommissionList;
 
+        $scope.getRate = () => {
+          const toUAH = $scope.list.find(el => el.ccy === $scope.fieldSell).buy;
+          const fromUAH = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
+
+          return toUAH / fromUAH;
+        };
+
         $scope.onClick = () => {
           [$scope.fieldSell, $scope.fieldBuy] = [$scope.fieldBuy, $scope.fieldSell];
+          $scope.rate = $scope.getRate();
         };
 
         $scope.changeBuyInput = () => {
-          const rate1 = $scope.list.find(el => el.ccy === $scope.fieldSell).buy;
-          const rate2 = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
-          $scope.inputBuy = $scope.inputSell * rate1 / rate2;
+          $scope.inputBuy = $scope.inputSell * $scope.getRate();
         };
 
         $scope.changeSellInput = () => {
-          const rate = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
-          $scope.inputSell = $scope.inputBuy * rate;
+          $scope.inputSell = $scope.inputBuy * $scope.getRate();
         };
+
+        $scope.update = () => {
+          $scope.rate = $scope.getRate();
+        }
 
         apiService.getExchangeRate().then(data => {
           $scope.list = data;
           console.log($scope.list);
+          $scope.rate = $scope.getRate();
         });
       }]);
 })();
