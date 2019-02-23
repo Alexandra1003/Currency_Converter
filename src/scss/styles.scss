@@ -20,6 +20,19 @@ body {
   border: 1px solid #5e2a8e;
   border-radius: 5px;
 
+  .form-group.col-md-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+
+    .change-button {
+      background: #905faf;
+      border-color: #442259;
+      color: white;
+    }
+  }
+
   .right-input {
     margin-bottom: 20px;
   }
