@@ -19,39 +19,39 @@
   </div>
   <main class="pt-5">
     <div class="content-wrapper col-md-6">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Buy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sell</a>
-        </li>
-      </ul>
       <div class="form-wrapper" ng-controller="TestController">
         <form class="form col-md-12">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-5">
             <label for="exampleInputName2">Pay</label>
             <div class="input-group">
-              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in currencyList | excludeFrom:fieldBuy"
+              <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList | filterCurrency:fieldBuy"
                 ng-model="fieldSell">
               </select>
             </div>
 
             <label for="exampleInputName2">Amount you wanna give</label>
-            <input type="text" class="form-control" id="exampleInputName2" placeholder="0.00">
+            <input type="text" ng-model="inputSell" ng-change="changeBuyInput()" autocomplete="off" class="form-control"
+              id="exampleInputName2" placeholder="0">
+          </div>
+          <div class="form-group col-md-1">
+            <button type="button" class="btn change-button" ng-click="onClick()">
+              <span>&#8656;</span>
+              <span>&#8658;</span>
+            </button>
           </div>
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-5">
             <label for="exampleInputName2">Get</label>
 
             <div class="input-group">
-              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in currencyList  | excludeFrom:fieldSell"
+              <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList  | filterCurrency:fieldSell"
                 ng-model="fieldBuy">
               </select>
             </div>
 
             <label for="exampleInputName2">Amount you gonna get</label>
-            <input type="text" class="form-control right-input" id="exampleInputName2" placeholder="0.00">
+            <input type="text" ng-model="inputBuy" ng-change="changeSellInput()" autocomplete="off" class="form-control right-input"
+              id="exampleInputName2" placeholder="0">
 
             <div class="input-group col-md-7 commission-select">
               <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in commissionList"
