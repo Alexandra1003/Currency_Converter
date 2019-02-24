@@ -25,7 +25,7 @@
             <label for="exampleInputName2">Pay</label>
             <div class="input-group">
               <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList | filterCurrency:fieldBuy"
-                ng-model="fieldSell" ng-change="update()">
+                ng-model="fieldSell" ng-change="updateCurrValue()">
               </select>
             </div>
 
@@ -33,10 +33,10 @@
             <input type="text" ng-model="inputSell" ng-change="changeBuyInput()" autocomplete="off" class="form-control"
               id="exampleInputName2" placeholder="0">
 
-            <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Rate:</label>
+            <div class="form-group">
+              <label class="col-sm-2 col-form-label">Rate(buy/sell):</label>
               <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" ng-model="rate">
+                <span>{{rateBuy}} / {{rateSell}}</span>
               </div>
             </div>
           </div>
@@ -53,7 +53,7 @@
 
             <div class="input-group">
               <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList  | filterCurrency:fieldSell"
-                ng-model="fieldBuy" ng-change="update()">
+                ng-model="fieldBuy" ng-change="updateCurrValue()">
               </select>
             </div>
 
@@ -62,8 +62,9 @@
               id="exampleInputName2" placeholder="0">
 
             <div class="input-group col-md-7 commission-select">
+                <label>Commission: </label>
               <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in commissionList"
-                ng-model="fieldCommission">
+                ng-model="fieldCommission" ng-change="updateCommissionValue()">
               </select>
             </div>
           </div>

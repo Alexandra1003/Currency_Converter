@@ -21,34 +21,51 @@
         $scope.currencyList = CurrencyList;
         $scope.commissionList = CommissionList;
 
-        $scope.getRate = () => {
-          const toUAH = $scope.list.find(el => el.ccy === $scope.fieldSell).buy;
-          const fromUAH = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
+        $scope.getRate = (to, from) => {
+          const toUAH = $scope.list.find(el => el.ccy === to).buy;
+          const fromUAH = $scope.list.find(el => el.ccy === from).sale;
 
-          return toUAH / fromUAH;
+          return (toUAH / fromUAH).toFixed(3);
+        };
+
+        $scope.getResultCur = (inCurr, rate, commission) => {
+          const commissionSum = inCurr * rate * commission / 100;
+
+          return inCurr * rate - commissionSum;
         };
 
         $scope.onClick = () => {
           [$scope.fieldSell, $scope.fieldBuy] = [$scope.fieldBuy, $scope.fieldSell];
-          $scope.rate = $scope.getRate();
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.changeBuyInput();
         };
 
         $scope.changeBuyInput = () => {
-          $scope.inputBuy = $scope.inputSell * $scope.getRate();
+          $scope.inputBuy = $scope.getResultCur($scope.inputSell,
+            $scope.getRate($scope.fieldSell, $scope.fieldBuy), $scope.fieldCommission);
         };
 
         $scope.changeSellInput = () => {
-          $scope.inputSell = $scope.inputBuy * $scope.getRate();
+          $scope.inputSell = $scope.getResultCur($scope.inputBuy,
+            $scope.getRate($scope.fieldBuy, $scope.fieldSell), $scope.fieldCommission);
         };
 
-        $scope.update = () => {
-          $scope.rate = $scope.getRate();
-        }
+        $scope.updateCurrValue = () => {
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.changeBuyInput();
+        };
+
+        $scope.updateCommissionValue = () => {
+          $scope.changeBuyInput();
+        };
 
         apiService.getExchangeRate().then(data => {
           $scope.list = data;
           console.log($scope.list);
-          $scope.rate = $scope.getRate();
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
         });
       }]);
 })();
