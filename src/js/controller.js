@@ -15,7 +15,7 @@
     ['$scope', 'apiService', 'CurrencyList', 'CommissionList',
       function($scope, apiService, CurrencyList, CommissionList) {
         $scope.fieldCommission = CommissionList[0];
-        $scope.fieldSell = CurrencyList[3];
+        $scope.fieldSell = CurrencyList[1];
         $scope.fieldBuy = CurrencyList[0];
 
         $scope.currencyList = CurrencyList;
@@ -25,7 +25,22 @@
           const toUAH = $scope.list.find(el => el.ccy === to).buy;
           const fromUAH = $scope.list.find(el => el.ccy === from).sale;
 
-          return (toUAH / fromUAH).toFixed(3);
+          if (to === CurrencyList[3]) {
+            const toUSD = $scope.list.find(el => el.ccy === CurrencyList[3]).buy;
+            const toUAH = $scope.list.find(el => el.ccy === CurrencyList[0]).buy;
+
+            return (toUSD * toUAH / fromUAH).toFixed(4);
+          }
+
+          if (from === CurrencyList[3]) {
+            const toUAH = $scope.list.find(el => el.ccy === to).buy;
+            const toUSD = $scope.list.find(el => el.ccy === CurrencyList[0]).sale;
+            const fromUSD = $scope.list.find(el => el.ccy === CurrencyList[3]).sale;
+
+            return (toUAH / toUSD / fromUSD).toFixed(4);
+          }
+
+          return (toUAH / fromUAH).toFixed(4);
         };
 
         $scope.getResultCur = (inCurr, rate, commission) => {
