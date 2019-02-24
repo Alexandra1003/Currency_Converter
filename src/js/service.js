@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* global angular */
 
 (function() {
@@ -13,7 +12,6 @@
         url: 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5'
       }).then(({ data }) => {
         this.exchangeRate = data;
-        console.log('rate', this.exchangeRate);
         return this.exchangeRate;
       });
     };

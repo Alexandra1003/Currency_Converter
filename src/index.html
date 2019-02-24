@@ -19,25 +19,24 @@
   </div>
   <main class="pt-5">
     <div class="content-wrapper col-md-6">
-      <div class="form-wrapper" ng-controller="TestController">
+      <div class="form-wrapper" ng-controller="CurrencyController">
+        <h1 class="main-header">Currency Converter</h1>
         <form class="form col-md-12">
           <div class="form-group col-md-5">
-            <label for="exampleInputName2">Pay</label>
+            <label>From</label>
             <div class="input-group">
-              <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList | filterCurrency:fieldBuy"
+              <select class="custom-select" ng-options="currency for currency in currencyList | filterCurrency:fieldBuy"
                 ng-model="fieldSell" ng-change="updateCurrValue()">
               </select>
             </div>
 
-            <label for="exampleInputName2">Amount you wanna give</label>
+            <label>Amount you give</label>
             <input type="text" ng-model="inputSell" ng-change="changeBuyInput()" autocomplete="off" class="form-control"
-              id="exampleInputName2" placeholder="0">
+              placeholder="0">
 
             <div class="form-group">
-              <label class="col-sm-2 col-form-label">Rate(buy/sell):</label>
-              <div class="col-sm-10">
-                <span>{{rateBuy}} / {{rateSell}}</span>
-              </div>
+              <h6 class="rate-header">Rate(buy/sell):</h6>
+              <span>{{rateBuy}} / {{rateSell}}</span>
             </div>
           </div>
 
@@ -49,22 +48,22 @@
           </div>
 
           <div class="form-group col-md-5">
-            <label for="exampleInputName2">Get</label>
+            <label>To</label>
 
             <div class="input-group">
-              <select class="custom-select" id="inputGroupSelect04" ng-options="currency for currency in currencyList  | filterCurrency:fieldSell"
+              <select class="custom-select" ng-options="currency for currency in currencyList  | filterCurrency:fieldSell"
                 ng-model="fieldBuy" ng-change="updateCurrValue()">
               </select>
             </div>
 
-            <label for="exampleInputName2">Amount you gonna get</label>
+            <label>Amount you get</label>
             <input type="text" ng-model="inputBuy" ng-change="changeSellInput()" autocomplete="off" class="form-control right-input"
-              id="exampleInputName2" placeholder="0">
+              placeholder="0">
 
             <div class="input-group col-md-7 commission-select">
-                <label>Commission: </label>
-              <select class="custom-select" id="inputGroupSelect04" ng-options="thing for thing in commissionList"
-                ng-model="fieldCommission" ng-change="updateCommissionValue()">
+              <h6 class="commission-header">Commission(%): </h6>
+              <select class="custom-select" ng-options="value for value in commissionList" ng-model="fieldCommission"
+                ng-change="updateCommissionValue()">
               </select>
             </div>
           </div>

@@ -1,15 +1,15 @@
 body {
   background: #decee7;
+  color: #3f0f6b;
+  font-size: 16px;
 }
 .content-wrapper {
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 
-  .nav-link.active {
-    background: #ba9cc4;
-    border: 1px solid #5e2a8e;
-    border-bottom: 1px solid #ba9cc4;
+  .main-header {
+    text-align: center;
   }
 }
 .form {
@@ -19,6 +19,7 @@ body {
   background: #ba9cc4;
   border: 1px solid #5e2a8e;
   border-radius: 5px;
+  padding: 15px 15px 0px;
 
   .form-group.col-md-1 {
     display: flex;
@@ -31,6 +32,21 @@ body {
       border-color: #442259;
       color: white;
     }
+  }
+
+  .input-group {
+    margin-bottom: 10px;
+    .commission-header {
+      margin-bottom: 15px;
+    }
+  }
+
+  .form-control {
+    margin-bottom: 20px;
+  }
+
+  .rate-header {
+    margin-bottom: 15px;
   }
 
   .commission-select {

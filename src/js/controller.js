@@ -1,21 +1,11 @@
-/* eslint-disable no-console */
-/* eslint-disable max-params */
 /* global angular */
 
 (function() {
-  window.app.filter('filterCurrency', [function() {
-    return function(array, expression) {
-      return array.filter(function(item) {
-        return !expression || !angular.equals(item, expression);
-      });
-    };
-  }]);
-
-  window.app.controller('TestController',
+  window.app.controller('CurrencyController',
     ['$scope', 'apiService', 'CurrencyList', 'CommissionList',
       function($scope, apiService, CurrencyList, CommissionList) {
         $scope.fieldCommission = CommissionList[0];
-        $scope.fieldSell = CurrencyList[3];
+        $scope.fieldSell = CurrencyList[1];
         $scope.fieldBuy = CurrencyList[0];
 
         $scope.currencyList = CurrencyList;
@@ -25,30 +15,43 @@
           const toUAH = $scope.list.find(el => el.ccy === to).buy;
           const fromUAH = $scope.list.find(el => el.ccy === from).sale;
 
-          return (toUAH / fromUAH).toFixed(3);
+          if (to === CurrencyList[3]) {
+            const toUSD = $scope.list.find(el => el.ccy === CurrencyList[3]).buy;
+            const toUAH = $scope.list.find(el => el.ccy === CurrencyList[0]).buy;
+
+            return (toUSD * toUAH / fromUAH).toFixed(4);
+          }
+
+          if (from === CurrencyList[3]) {
+            const toUSD = $scope.list.find(el => el.ccy === CurrencyList[0]).sale;
+            const fromUSD = $scope.list.find(el => el.ccy === CurrencyList[3]).sale;
+
+            return (toUAH / toUSD / fromUSD).toFixed(4);
+          }
+
+          return (toUAH / fromUAH).toFixed(4);
         };
 
-        $scope.getResultCur = (inCurr, rate, commission) => {
+        $scope.getResultCur = (inCurr = 0, rate, commission) => {
           const commissionSum = inCurr * rate * commission / 100;
 
-          return inCurr * rate - commissionSum;
+          return (inCurr * rate - commissionSum).toFixed(5);
         };
 
         $scope.onClick = () => {
           [$scope.fieldSell, $scope.fieldBuy] = [$scope.fieldBuy, $scope.fieldSell];
-          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
-          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
+          [$scope.rateBuy, $scope.rateSell] = [$scope.rateSell, $scope.rateBuy];
           $scope.changeBuyInput();
         };
 
         $scope.changeBuyInput = () => {
           $scope.inputBuy = $scope.getResultCur($scope.inputSell,
-            $scope.getRate($scope.fieldSell, $scope.fieldBuy), $scope.fieldCommission);
+            $scope.rateBuy, $scope.fieldCommission);
         };
 
         $scope.changeSellInput = () => {
           $scope.inputSell = $scope.getResultCur($scope.inputBuy,
-            $scope.getRate($scope.fieldBuy, $scope.fieldSell), $scope.fieldCommission);
+            $scope.rateSell, $scope.fieldCommission);
         };
 
         $scope.updateCurrValue = () => {
@@ -63,9 +66,16 @@
 
         apiService.getExchangeRate().then(data => {
           $scope.list = data;
-          console.log($scope.list);
           $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
           $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
         });
       }]);
+
+  window.app.filter('filterCurrency', [function() {
+    return function(array, expression) {
+      return array.filter(function(item) {
+        return !expression || !angular.equals(item, expression);
+      });
+    };
+  }]);
 })();
