@@ -21,24 +21,51 @@
         $scope.currencyList = CurrencyList;
         $scope.commissionList = CommissionList;
 
+        $scope.getRate = (to, from) => {
+          const toUAH = $scope.list.find(el => el.ccy === to).buy;
+          const fromUAH = $scope.list.find(el => el.ccy === from).sale;
+
+          return (toUAH / fromUAH).toFixed(3);
+        };
+
+        $scope.getResultCur = (inCurr, rate, commission) => {
+          const commissionSum = inCurr * rate * commission / 100;
+
+          return inCurr * rate - commissionSum;
+        };
+
         $scope.onClick = () => {
           [$scope.fieldSell, $scope.fieldBuy] = [$scope.fieldBuy, $scope.fieldSell];
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.changeBuyInput();
         };
 
         $scope.changeBuyInput = () => {
-          const rate1 = $scope.list.find(el => el.ccy === $scope.fieldSell).buy;
-          const rate2 = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
-          $scope.inputBuy = $scope.inputSell * rate1 / rate2;
+          $scope.inputBuy = $scope.getResultCur($scope.inputSell,
+            $scope.getRate($scope.fieldSell, $scope.fieldBuy), $scope.fieldCommission);
         };
 
         $scope.changeSellInput = () => {
-          const rate = $scope.list.find(el => el.ccy === $scope.fieldBuy).sale;
-          $scope.inputSell = $scope.inputBuy * rate;
+          $scope.inputSell = $scope.getResultCur($scope.inputBuy,
+            $scope.getRate($scope.fieldBuy, $scope.fieldSell), $scope.fieldCommission);
+        };
+
+        $scope.updateCurrValue = () => {
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.changeBuyInput();
+        };
+
+        $scope.updateCommissionValue = () => {
+          $scope.changeBuyInput();
         };
 
         apiService.getExchangeRate().then(data => {
           $scope.list = data;
           console.log($scope.list);
+          $scope.rateBuy = $scope.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = $scope.getRate($scope.fieldBuy, $scope.fieldSell);
         });
       }]);
 })();

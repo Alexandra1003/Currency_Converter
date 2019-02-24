@@ -3,7 +3,7 @@
 
 (function() {
   window.app.constant('CurrencyList', ['USD', 'EUR', 'RUR', 'BTC']);
-  window.app.constant('CommissionList', [1, 2, 5, 10, 20]);
+  window.app.constant('CommissionList', [0, 1, 2, 5, 10]);
 
   window.app.service('apiService', ['$http', function($http) {
     this.exchangeRate = null;
