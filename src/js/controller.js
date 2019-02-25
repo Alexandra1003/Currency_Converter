@@ -12,12 +12,6 @@
         $scope.currencyList = CurrencyList;
         $scope.commissionList = CommissionList;
 
-        $scope.getResultCur = (inCurr = 0, rate, commission) => {
-          const commissionSum = inCurr * rate * commission / 100;
-
-          return (inCurr * rate - commissionSum).toFixed(5);
-        };
-
         $scope.onClick = () => {
           [$scope.fieldSell, $scope.fieldBuy] = [$scope.fieldBuy, $scope.fieldSell];
           [$scope.rateBuy, $scope.rateSell] = [$scope.rateSell, $scope.rateBuy];
@@ -25,12 +19,12 @@
         };
 
         $scope.changeBuyInput = () => {
-          $scope.inputBuy = $scope.getResultCur($scope.inputSell,
+          $scope.inputBuy = rateService.getResultCur($scope.inputSell,
             $scope.rateBuy, $scope.fieldCommission);
         };
 
         $scope.changeSellInput = () => {
-          $scope.inputSell = $scope.getResultCur($scope.inputBuy,
+          $scope.inputSell = rateService.getResultCur($scope.inputBuy,
             $scope.rateSell, $scope.fieldCommission);
         };
 

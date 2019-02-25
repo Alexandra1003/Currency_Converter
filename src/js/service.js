@@ -25,6 +25,12 @@
 
       return (toUAH / fromUAH).toFixed(4);
     };
+
+    this.getResultCur = (inCurr = 0, rate, commission) => {
+      const commissionSum = inCurr * rate * commission / 100;
+
+      return (inCurr * rate - commissionSum).toFixed(5);
+    };
   }]);
 
   window.app.service('apiService', ['$http', function($http) {
