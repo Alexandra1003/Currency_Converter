@@ -1,9 +1,10 @@
+/* eslint-disable max-params */
 /* global angular */
 
 (function() {
   window.app.controller('CurrencyController',
-    ['$scope', 'apiService', 'CurrencyList', 'CommissionList',
-      function($scope, apiService, CurrencyList, CommissionList) {
+    ['$scope', 'apiService', 'CurrencyList', 'CommissionList', 'rateService',
+      function($scope, apiService, CurrencyList, CommissionList, rateService) {
         $scope.fieldCommission = CommissionList[0];
         $scope.fieldSell = CurrencyList[1];
         $scope.fieldBuy = CurrencyList[0];
@@ -34,8 +35,8 @@
         };
 
         $scope.updateCurrValue = () => {
-          $scope.rateBuy = apiService.getRate($scope.fieldSell, $scope.fieldBuy);
-          $scope.rateSell = apiService.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
           $scope.changeBuyInput();
         };
 
@@ -45,8 +46,8 @@
 
         apiService.getRateList().then(data => {
           $scope.list = data;
-          $scope.rateBuy = apiService.getRate($scope.fieldSell, $scope.fieldBuy);
-          $scope.rateSell = apiService.getRate($scope.fieldBuy, $scope.fieldSell);
+          $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
+          $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
         });
       }]);
 })();
