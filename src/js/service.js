@@ -13,6 +13,10 @@
     };
 
     this.getRate = (from, to) => {
+      if (this.listOfRates.length === 0) {
+        return;
+      }
+
       const toUAH = from.buy;
       const fromUAH = to.sale;
 

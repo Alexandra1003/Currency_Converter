@@ -1,3 +1,4 @@
+
 (function() {
   window.app.controller('CurrencyController',
     ['$scope', 'CommissionList', 'rateService',
@@ -12,14 +13,14 @@
 
           $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
           $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
+        });
 
-          $scope.$watchGroup(['fieldBuy', 'fieldSell'], function() {
-            $scope.updateCurrValue();
-          });
+        $scope.$watchGroup(['fieldBuy', 'fieldSell'], function() {
+          $scope.updateCurrValue();
+        });
 
-          $scope.$watch('fieldCommission', function() {
-            $scope.changeBuyInput();
-          });
+        $scope.$watch('fieldCommission', function() {
+          $scope.changeBuyInput();
         });
 
         $scope.onClick = () => {
@@ -43,9 +44,5 @@
           $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
           $scope.changeBuyInput();
         };
-
-        // $scope.updateCommissionValue = () => {
-        //   $scope.changeBuyInput();
-        // };
       }]);
 })();

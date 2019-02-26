@@ -6,7 +6,6 @@
     crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href='css/styles.css'>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.js'></script>
-  <script src='js/index.js'></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -24,13 +23,20 @@
           <div class="form-group col-md-5">
             <label>From</label>
             <div class="input-group">
-              <select class="custom-select" ng-options="currency.ccy for currency in list | filterCurrency:fieldBuy"
+              <select
+                class="custom-select"
+                ng-options="currency.ccy for currency in list | filterCurrency:fieldBuy"
                 ng-model="fieldSell">
               </select>
             </div>
 
             <label>Amount you give</label>
-            <input type="text" ng-model="inputSell" ng-change="changeBuyInput()" autocomplete="off" class="form-control"
+            <input
+              type="text"
+              ng-model="inputSell"
+              ng-change="changeBuyInput()"
+              autocomplete="off"
+              class="form-control"
               placeholder="0">
 
             <div class="form-group">
@@ -40,7 +46,10 @@
           </div>
 
           <div class="form-group col-md-1">
-            <button type="button" class="btn change-button" ng-click="onClick()">
+            <button
+              type="button"
+              class="btn change-button"
+              ng-click="onClick()">
               <span>&#8656;</span>
               <span>&#8658;</span>
             </button>
@@ -50,18 +59,28 @@
             <label>To</label>
 
             <div class="input-group">
-              <select class="custom-select" ng-options="currency.ccy for currency in list  | filterCurrency:fieldSell"
+              <select
+                class="custom-select"
+                ng-options="currency.ccy for currency in list  | filterCurrency:fieldSell"
                 ng-model="fieldBuy">
               </select>
             </div>
 
             <label>Amount you get</label>
-            <input type="text" ng-model="inputBuy" ng-change="changeSellInput()" autocomplete="off" class="form-control right-input"
+            <input
+              type="text"
+              ng-model="inputBuy"
+              ng-change="changeSellInput()"
+              autocomplete="off"
+              class="form-control right-input"
               placeholder="0">
 
             <div class="input-group col-md-7 commission-select">
               <h6 class="commission-header">Commission(%): </h6>
-              <select class="custom-select" ng-options="value for value in commissionList" ng-model="fieldCommission">
+              <select
+                class="custom-select"
+                ng-options="value for value in commissionList"
+                ng-model="fieldCommission">
               </select>
             </div>
           </div>
@@ -69,6 +88,8 @@
       </div>
     </div>
   </main>
+
+  <script src='js/index.js'></script>
 </body>
 
 </html>
