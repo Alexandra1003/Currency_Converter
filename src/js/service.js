@@ -1,13 +1,16 @@
+/* eslint-disable camelcase */
 (function() {
   window.app.constant('CommissionList', [0, 1, 2, 5, 10]);
+  window.app.constant('UAHconstant', { ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1 });
 
-  window.app.service('rateService', ['$http', function($http) {
+  window.app.service('rateService', ['$http', 'UAHconstant', function($http, UAHconstant) {
     this.listOfRates = [];
 
     this.getRateList = () => {
       return $http.get('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5')
         .then(({ data }) => {
           this.listOfRates = data;
+          this.listOfRates.push(UAHconstant);
           return this.listOfRates;
         });
     };
