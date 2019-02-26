@@ -1,13 +1,11 @@
-/* eslint-disable max-params */
-
 (function() {
   window.app.controller('CurrencyController',
-    ['$scope', 'apiService', 'CommissionList', 'rateService',
-      function($scope, apiService, CommissionList, rateService) {
+    ['$scope', 'CommissionList', 'rateService',
+      function($scope, CommissionList, rateService) {
         $scope.fieldCommission = CommissionList[0];
         $scope.commissionList = CommissionList;
 
-        apiService.getRateList().then(data => {
+        rateService.getRateList().then(data => {
           $scope.list = data;
           $scope.fieldSell = $scope.list[1];
           $scope.fieldBuy = $scope.list[0];
