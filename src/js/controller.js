@@ -12,6 +12,14 @@
 
           $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
           $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
+
+          $scope.$watchGroup(['fieldBuy', 'fieldSell'], function() {
+            $scope.updateCurrValue();
+          });
+
+          $scope.$watch('fieldCommission', function() {
+            $scope.changeBuyInput();
+          });
         });
 
         $scope.onClick = () => {
@@ -36,8 +44,8 @@
           $scope.changeBuyInput();
         };
 
-        $scope.updateCommissionValue = () => {
-          $scope.changeBuyInput();
-        };
+        // $scope.updateCommissionValue = () => {
+        //   $scope.changeBuyInput();
+        // };
       }]);
 })();

@@ -25,7 +25,7 @@
             <label>From</label>
             <div class="input-group">
               <select class="custom-select" ng-options="currency.ccy for currency in list | filterCurrency:fieldBuy"
-                ng-model="fieldSell" ng-change="updateCurrValue()">
+                ng-model="fieldSell">
               </select>
             </div>
 
@@ -51,7 +51,7 @@
 
             <div class="input-group">
               <select class="custom-select" ng-options="currency.ccy for currency in list  | filterCurrency:fieldSell"
-                ng-model="fieldBuy" ng-change="updateCurrValue()">
+                ng-model="fieldBuy">
               </select>
             </div>
 
@@ -61,8 +61,7 @@
 
             <div class="input-group col-md-7 commission-select">
               <h6 class="commission-header">Commission(%): </h6>
-              <select class="custom-select" ng-options="value for value in commissionList" ng-model="fieldCommission"
-                ng-change="updateCommissionValue()">
+              <select class="custom-select" ng-options="value for value in commissionList" ng-model="fieldCommission">
               </select>
             </div>
           </div>
