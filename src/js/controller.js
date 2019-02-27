@@ -1,5 +1,9 @@
-
 (function() {
+  window.app.component('currencyComponent', {
+    templateUrl: 'form-component.html',
+    controller: 'CurrencyController'
+  });
+
   window.app.controller('CurrencyController',
     ['$scope', 'CommissionList', 'rateService',
       function($scope, CommissionList, rateService) {
