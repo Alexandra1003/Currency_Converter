@@ -2,6 +2,18 @@ body {
   background: #decee7;
   color: #3f0f6b;
   font-size: 16px;
+
+  .connection-message {
+    background-color: rgba( 105, 89, 89, 0.5);
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+  }
 }
 .content-wrapper {
   display: flex;

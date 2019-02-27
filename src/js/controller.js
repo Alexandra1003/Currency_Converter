@@ -1,5 +1,5 @@
 (function() {
-  window.app.component('myComponent', {
+  window.app.component('currencyComponent', {
     templateUrl: 'form-component.html',
     controller: 'CurrencyController'
   });
