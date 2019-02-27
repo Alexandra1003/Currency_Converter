@@ -26,7 +26,7 @@ gulp.task('sass-build', function () {
 });
 
 gulp.task('js', function (done) {
-  gulp.src(['src/js/ng-app.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filters.js'])
+  gulp.src(['src/js/ng-app.js', 'src/js/directive.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filters.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
@@ -40,7 +40,7 @@ gulp.task('js', function (done) {
 });
 
 gulp.task('js-build', function (done) {
-  gulp.src(['src/js/ng-app.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filters.js'])
+  gulp.src(['src/js/ng-app.js', 'src/js/directive.js', 'src/js/service.js', 'src/js/controller.js', 'src/js/filters.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
