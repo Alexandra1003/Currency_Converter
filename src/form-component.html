@@ -1,0 +1,51 @@
+<div class="content-wrapper col-md-6">
+    <div class="form-wrapper" ng-controller="CurrencyController">
+      <h1 class="main-header">Currency Converter</h1>
+      <form class="form col-md-12">
+        <div class="form-group col-md-5">
+          <label>From</label>
+          <div class="input-group">
+            <select class="custom-select" ng-options="currency.ccy for currency in list | filterCurrency:fieldBuy"
+              ng-model="fieldSell">
+            </select>
+          </div>
+
+          <label>Amount you give</label>
+          <input type="text" ng-model="inputSell" ng-change="changeBuyInput()" autocomplete="off" class="form-control"
+            placeholder="0">
+
+          <div class="form-group">
+            <h6 class="rate-header">Rate (market/inverse):</h6>
+            <span>{{rateBuy}} / {{rateSell}}</span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-1">
+          <button type="button" class="btn change-button" ng-click="onClick()">
+            <span>&#8656;</span>
+            <span>&#8658;</span>
+          </button>
+        </div>
+
+        <div class="form-group col-md-5">
+          <label>To</label>
+
+          <div class="input-group">
+            <select class="custom-select" ng-options="currency.ccy for currency in list  | filterCurrency:fieldSell"
+              ng-model="fieldBuy">
+            </select>
+          </div>
+
+          <label>Amount you get</label>
+          <input type="text" ng-model="inputBuy" ng-change="changeSellInput()" autocomplete="off" class="form-control right-input"
+            placeholder="0">
+
+          <div class="input-group col-md-7 commission-select">
+            <h6 class="commission-header">Commission(%): </h6>
+            <select class="custom-select" ng-options="value for value in commissionList" ng-model="fieldCommission">
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
