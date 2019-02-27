@@ -26,12 +26,12 @@ gulp.task('sass-build', function () {
 });
 
 gulp.task('js', function (done) {
-  gulp.src(['src/js/ng-app.js', 'src/js/directive.js', 'src/js/service.js', 'src/js/currencyComponent.js', 'src/js/filters.js'])
+  gulp.src(['src/js/index.js', 'src/js/directives/noConnection.directive.js', 'src/js/service.js', 'src/js/components/currencyComponent/currencyComponent.js', 'src/js/filters.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(sourcemaps.init())
-    .pipe(concat('index.js'))
+    .pipe(concat('main.js'))
     .pipe(gulp.dest('dist/js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('dist/js'))
@@ -40,12 +40,12 @@ gulp.task('js', function (done) {
 });
 
 gulp.task('js-build', function (done) {
-  gulp.src(['src/js/ng-app.js', 'src/js/directive.js', 'src/js/service.js', 'src/js/currencyComponent.js', 'src/js/filters.js'])
+  gulp.src(['src/js/index.js', 'src/js/directives/noConnection.directive.js', 'src/js/service.js', 'src/js/components/currencyComponent/currencyComponent.js', 'src/js/filters.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(sourcemaps.init())
-    .pipe(concat('index.js'))
+    .pipe(concat('main.js'))
     .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
     .pipe(sourcemaps.write())
@@ -84,7 +84,7 @@ function reload(done) {
 
 gulp.task('watch', function (done) {
   gulp.watch("src/scss/**/*.scss", gulp.series('sass', reload));
-  gulp.watch("src/js/*.js", gulp.series('js', reload));
+  gulp.watch("src/js/**/*.js", gulp.series('js', reload));
   gulp.watch("src/**/*.html", gulp.series('html', reload));
   done()
 });

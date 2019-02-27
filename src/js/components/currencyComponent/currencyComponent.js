@@ -1,3 +1,4 @@
+/* eslint-disable */
 (function() {
   window.app.component('currencyComponent', {
     templateUrl: 'form-component.html',
@@ -7,6 +8,7 @@
   window.app.controller('CurrencyController',
     ['$scope', 'CommissionList', 'rateService',
       function($scope, CommissionList, rateService) {
+        console.log(1)
         $scope.fieldCommission = CommissionList[0];
         $scope.commissionList = CommissionList;
 
