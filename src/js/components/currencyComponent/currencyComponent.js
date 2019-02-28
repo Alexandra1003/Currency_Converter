@@ -1,23 +1,23 @@
+/* eslint-disable max-params */
 (function() {
   window.app.component('currencyComponent', {
+    bindings: { list1: '<' },
     templateUrl: 'js/components/currencyComponent/currency-component.html',
     controller: 'CurrencyController'
   });
 
   window.app.controller('CurrencyController',
-    ['$scope', 'CommissionList', 'rateService',
-      function($scope, CommissionList, rateService) {
+    ['$scope', 'CommissionList', 'rateService', 'currencyList',
+      function($scope, CommissionList, rateService, currencyList) {
+        $scope.list = currencyList;
+        $scope.fieldSell = $scope.list[1];
+        $scope.fieldBuy = $scope.list[0];
+
+        $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
+        $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
+
         $scope.fieldCommission = CommissionList[0];
         $scope.commissionList = CommissionList;
-
-        rateService.getRateList().then(data => {
-          $scope.list = data;
-          $scope.fieldSell = $scope.list[1];
-          $scope.fieldBuy = $scope.list[0];
-
-          $scope.rateBuy = rateService.getRate($scope.fieldSell, $scope.fieldBuy);
-          $scope.rateSell = rateService.getRate($scope.fieldBuy, $scope.fieldSell);
-        });
 
         $scope.$watchGroup(['fieldBuy', 'fieldSell'], function() {
           $scope.updateCurrValue();

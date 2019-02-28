@@ -18,7 +18,13 @@
         .state({
           name: 'currConverterState',
           url: '/currencyConverter',
-          component: 'currencyComponent'
+          templateUrl: 'js/components/currencyComponent/currency-component.html',
+          controller: 'CurrencyController',
+          resolve: {
+            currencyList: rateService => {
+              return rateService.getRateList();
+            }
+          }
         });
     }])
 
