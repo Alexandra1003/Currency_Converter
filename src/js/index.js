@@ -8,12 +8,16 @@
         .state({
           name: 'home',
           url: '/',
-          template: '<h3>Welcome to this app!</h3>'
+          template: `<div class="header-wrapper">
+                        <h3>Welcome to this app!</h3>
+                     </div>`
         })
         .state({
           name: 'about',
           url: '/about',
-          template: '<h3>This page is about us</h3>'
+          template: `<div class="header-wrapper">
+                        <h3>This page is about us</h3>
+                     </div>`
         })
         .state({
           name: 'currConverterState',

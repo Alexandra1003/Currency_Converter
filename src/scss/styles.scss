@@ -26,6 +26,13 @@ body {
       margin-right: 3rem;
     }
   }
+
+  .header-wrapper {
+    text-align: center;
+    h3 {
+      line-height: 100px;
+    }
+  }
 }
 .content-wrapper {
   display: flex;
