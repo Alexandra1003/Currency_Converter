@@ -14,6 +14,18 @@ body {
     font-weight: 600;
     text-align: center;
   }
+
+  .active {
+    color: red; font-weight: bold
+  }
+
+  .navbar {
+    background-color: #c9aace;
+
+    .navbar-brand {
+      margin-right: 3rem;
+    }
+  }
 }
 .content-wrapper {
   display: flex;
