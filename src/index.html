@@ -9,11 +9,20 @@
 
 <body ng-app="myApp">
   <main>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" ui-sref="home" ui-sref-active="active">Home</a>
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" ui-sref="about" ui-sref-active="active">About</a>
+        <a class="nav-item nav-link" ui-sref="currConverterState" ui-sref-active="active">Currency Converter</a>
+      </div>
+    </nav>
+
+    <ui-view></ui-view>
     <no-connection></no-connection>
-    <currency-component></currency-component>
   </main>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.7/angular.js'></script>
+  <script src="//unpkg.com/@uirouter/angularjs@1.0.5/release/angular-ui-router.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"

@@ -29,5 +29,8 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify-es": "^1.0.4",
     "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22"
   }
 }
