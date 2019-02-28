@@ -1,7 +1,6 @@
 /* eslint-disable max-params */
 (function() {
   window.app.component('currencyComponent', {
-    bindings: { list1: '<' },
     templateUrl: 'js/components/currencyComponent/currency-component.html',
     controller: 'CurrencyController'
   });
